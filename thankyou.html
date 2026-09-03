@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Veracruz Chamber of Commerce</title>
+    <meta name="description" content="Thank you for applying to the Veracruz Chamber of Commerce. We have received your membership application and will be in touch soon.">
+    <meta name="author" content="Jose Rodrigo Olivarez Marcelino">
+    <link rel="stylesheet" href="styles/chamber.css">
+    <link rel="stylesheet" href="styles/chamber-large.css">
+    <script src="scripts/thankyou.js" defer></script>
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Finlandica+Headline:ital,wght@0,100..900;1,100..900&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <meta property="og:title" content="Thank You - Veracruz Chamber of Commerce">
+    <meta property="og:description"
+        content="Your membership application to the Veracruz Chamber of Commerce has been received. We look forward to welcoming you to our business community.">
+    <meta property="og:image" content="https://rodrigo-olivarez.github.io/wdd231/chamber/images/Llegada-Veracruz.webp">
+    <meta property="og:url" content="https://rodrigo-olivarez.github.io/wdd231/chamber/thankyou.html">
+</head>
+
+<body>
+    <header>
+        <img src="images/water.svg" alt="logo site" width="512" height="512">
+        <span>Veracruz Chamber of Commerce</span>
+        <button id="ham-btn" class="hamburger"></button>
+        <nav id="nav-bar" class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="directory.html">Directory</a></li>
+                <li><a href="join.html">Join</a></li>
+                <li><a href="#">Discover</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Thank You for Applying</h1>
+        <h2>We have received your application.</h2>
+        <section class="thankyou-info">
+            <p><strong>First Name:</strong> <span id="firstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Mobile Phone:</strong> <span id="phone"></span></p>
+            <p><strong>Bussiness Name:</strong> <span id="organization"></span></p>
+            <p><strong>Date/Time:</strong> <span id="timestamp"></span></p>
+        </section>
+    </main>
+    <footer>
+        <p><strong>Veracruz Chamber of Commerce</strong></p>
+        <p>Lopez Arias S/N</p>
+        <p>Acayucan, ver 888</p>
+        <p>Info@veracruzzmx.org</p>
+        <p>(55) 2005 0610</p>
+        <div class="social">
+            <a href="https://www.linkedin.com" target="_blank"><img src="images/linkedin.svg"
+                    alt="Follow us on LinkedIn" width="16" height="16"></a>
+            <a href="https://www.youtube.com" target="_blank"><img src="images/youtube.svg"
+                    alt="Watch our Youtube channel" width="16" height="16"></a>
+            <a href="https://www.facebook.com" target="_blank"><img src="images/facebook.svg"
+                    alt="Follow us on Facebook" width="16" height="16"></a>
+        </div>
+        <p>WDD 231 Class Project</p>
+        <p>Jose Rodrigo Olivarez Marcelino</p>
+        <p>&copy;<span id="currentYear"></span> Veracruz Chamber of Commerce</p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+
+</html>
