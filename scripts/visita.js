@@ -10,9 +10,6 @@ navButton.addEventListener('click', () => {
     navBar.classList.toggle('show');
 });
 
-
-document.getElementById('timestamp').value = new Date().toLocaleString();
-
 const modalBtns = document.querySelectorAll('.modal-btn');
 const closeBtns = document.querySelectorAll('.close-modal');
 

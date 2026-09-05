@@ -75,13 +75,6 @@
         color: #000000;
     }
 
-    .events-weather{
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 1rem;
-        margin: 1rem 0;
-    }
-
     #spotlights-cont{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
