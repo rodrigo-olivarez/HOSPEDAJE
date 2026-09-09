@@ -33,14 +33,26 @@
         </nav>
     </header>
     <main>
-        <h1>Veracruz Chamber of Commerce Directory</h1>
-        <div class="menu">
-            <button id="grid-btn">Grid</button>
-            <button id="list-btn">List</button>
+        <h1>EXPLORA LO QUE HAY ALREDEDOR</h1>
+        <div class="members-menu">
+            <button class="filter-btn all">All</button>
+            <button class="filter-btn">History</button>
+            <button class="filter-btn">Art</button>
+            <button class="filter-btn">Culture</button>
+            <button class="filter-btn">Science</button>
+            <button class="filter-btn">Free</button>
+            <button class="filter-btn">Family</button>
         </div>
-
-        <section id="members-container"></section>
+        <div id="members-grid" class="members-grid">
+    
+        </div>
     </main>
+    
+    <dialog id="member-modal">
+        <button id="close-modal">X</button>
+        <div id="modal-content"></div>
+    </dialog>
+
     <footer>
         <p><strong>HOSPEJADE DEL TEMPLO DE LA CIUDAD DE MEXICO</strong></p>
         <p>AV 510 #90</p>

@@ -10,38 +10,103 @@ navButton.addEventListener('click', () => {
     navBar.classList.toggle('show');
 });
 
+let allMembers = [];
+
 async function loadMembers() {
-    const response = await fetch('data/members.json');
-    const members = await response.json();
-    displayMembers(members);
-    document.getElementById('members-container').classList.add('grid');
+    try {
+        const response = await fetch('data/members.json');
+        const members = await response.json();
+        allMembers = members;
+
+        const savedFilter = localStorage.getItem('activeFilter') || 'All';
+        setActiveButton(savedFilter);
+        displayMembers(filterMembers(savedFilter));
+
+    } catch (error) {
+        document.getElementById('members-grid').innerHTML = `<p>Sorry, we could not load the museums. Please try again later.</p>`;
+        console.error('Error loading members:', error);
+    }
 }
-loadMembers();
+
+function filterMembers(filter) {
+    if (filter === 'All') return allMembers;
+    if (filter === 'Free') return allMembers.filter(m => m.free);
+    if (filter === 'Family') return allMembers.filter(m => m.childrenArea);
+    return allMembers.filter(m => m.type === filter);
+}
 
 function displayMembers(members) {
-    const container = document.getElementById('members-container');
-    container.innerHTML = "";
+    const membersGrid = document.getElementById('members-grid');
 
-    members.forEach(member => {
-        const card = document.createElement('div');
-        card.classList.add('member-card');
-        card.innerHTML = `
-        <img src="images/${member.image}" alt="${member.name}">
-        <h2>${member.name}</h2>
-        <p>${member.address}</p>
-        <p>${member.phone}</p>
-        <a href="${member.website}" target="_blank">${member.website}</a>
-        `;
-        container.appendChild(card);
+    membersGrid.innerHTML = members.map(member => `
+        <div class="member-card" data-id="${member.id}" tabindex="0" role="button" aria-label="View details for ${member.name}">
+            <img src="${member.image}" alt="${member.name}" width="300" height="140" loading="lazy">
+            <div class="member-card-info">
+                <h3>${member.name}</h3>
+                <span class="card-type">${member.type}</span>
+                <span class="card-price">${member.price === 0 ? 'Free' : `$${member.price} MXN`}</span>
+                <span class="card-schedule">${member.schedule}</span>
+            </div>
+        </div>
+    `).join('');
+
+    document.querySelectorAll('.member-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = parseInt(card.dataset.id);
+            const member = allMembers.find(m => m.id === id);
+            openModal(member);
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') card.click();
+        });
     });
 }
 
-document.getElementById('grid-btn').addEventListener('click', () => {
-    document.getElementById('members-container').classList.remove('list');
-    document.getElementById('members-container').classList.add('grid');
-})
+function setActiveButton(filter) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim() === filter);
+    });
+}
 
-document.getElementById('list-btn').addEventListener('click', () => {
-    document.getElementById('members-container').classList.remove('grid');
-    document.getElementById('members-container').classList.add('list');
-})
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.textContent.trim();
+        setActiveButton(filter);
+        displayMembers(filterMembers(filter));
+        localStorage.setItem('activeFilter', filter);
+    });
+});
+
+function openModal(member) {
+    const modal = document.getElementById('member-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalContent = document.getElementById('modal-content');
+
+    modalContent.innerHTML = `
+        <img src="${member.image}" alt="${member.name}" width="500" height="200" loading="lazy">
+        <span class="modal-type">${member.type}</span>
+        <h2>${member.name}</h2>
+        <p>${member.description}</p>
+        <div class="modal-meta">
+            <a href="📍${member.address}" target= "blank"> Click aqui para ir a maps</a>
+            <span>🕐 ${member.schedule}</span>
+            <span>🎟️ ${member.price === 0 ? 'Free entry' : `$${member.price} MXN`}</span>
+            <span>👨‍👩‍👧 Family friendly: ${member.childrenArea ? 'Yes' : 'No'}</span>
+        </div>
+    `;
+
+    modal.showModal();
+    closeModal.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.close();
+    });
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.getElementById('member-modal').close();
+    }
+});
+
+loadMembers();

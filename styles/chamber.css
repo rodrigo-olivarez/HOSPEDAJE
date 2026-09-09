@@ -484,3 +484,31 @@ footer {
 .social a:hover img {
     background-color: #004e91;
 }
+
+.members-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    border-radius: 10px;
+    border: 1px solid #621708;
+    background: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #621708;
+    color: #fff;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+}
