@@ -29,7 +29,7 @@ async function loadMembers() {
 }
 
 function filterMembers(filter) {
-    if (filter === 'All') return allMembers;
+    if (filter === 'ALL') return allMembers;
     if (filter === 'Free') return allMembers.filter(m => m.free);
     if (filter === 'Family') return allMembers.filter(m => m.childrenArea);
     return allMembers.filter(m => m.type === filter);
@@ -44,7 +44,7 @@ function displayMembers(members) {
             <div class="member-card-info">
                 <h3>${member.name}</h3>
                 <span class="card-type">${member.type}</span>
-                <span class="card-price">${member.price === 0 ? 'Free' : `$${member.price} MXN`}</span>
+                <span class="card-price">${member.price === 0 ? 'Gratis' : `$${member.price} MXN`}</span>
                 <span class="card-schedule">${member.schedule}</span>
             </div>
         </div>
@@ -89,10 +89,10 @@ function openModal(member) {
         <h2>${member.name}</h2>
         <p>${member.description}</p>
         <div class="modal-meta">
-            <a href="📍${member.address}" target= "blank"> Click aqui para ir a maps</a>
+            <a href="${member.address}" target= "blank">📍[CLICK AQUI] Como llegar</a>
             <span>🕐 ${member.schedule}</span>
-            <span>🎟️ ${member.price === 0 ? 'Free entry' : `$${member.price} MXN`}</span>
-            <span>👨‍👩‍👧 Family friendly: ${member.childrenArea ? 'Yes' : 'No'}</span>
+            <span> Gasto Aprox. por persona ${member.price === 0 ? 'Entrada gratis' : `$${member.price} MXN`}</span>
+            <span>👨‍👩‍👧 Area infantil: ${member.childrenArea ? 'SI' : 'NO'}</span>
         </div>
     `;
 
